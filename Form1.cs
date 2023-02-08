@@ -38,7 +38,7 @@ namespace _5pwnet_switcher
                 Application.Exit();
             }
             InsertLog("已连接至信息服务器。");
-            if (!x.ServerStatus)
+            if (!x!.ServerStatus)
             {
                 InsertLog("游戏服务器状态：关闭");
                 InsertLog("无法连接至游戏服务器");
@@ -57,7 +57,21 @@ namespace _5pwnet_switcher
                 Application.Exit();
                 return;
             }
-            if(x.ServerUrl != "")
+
+            //Announcement
+            if (x.Announcement != "")
+            {
+                InsertLog("来自服务器的消息：");
+                string tmp = x.Announcement!;
+                while (tmp.Length > 10)
+                {
+                    InsertLog(tmp[..10]);
+                    tmp = tmp[10..];
+                }
+                InsertLog(tmp);
+            }
+
+            if (x.ServerUrl != "")
             {
                 InsertLog("已成功获取服务器地址");
             }
@@ -67,7 +81,7 @@ namespace _5pwnet_switcher
                 await Delay_Async(3000);
                 Application.Exit();
             }
-            
+
             try
             {
                 string? rkv = null;
@@ -82,7 +96,7 @@ namespace _5pwnet_switcher
                 }
                 InsertLog("正在启动osu!");
                 System.Diagnostics.Process.Start(rkv, $"-devserver {x.ServerUrl}:{x.Port}");
-                await Delay_Async(3000);
+                await Delay_Async(5000);
                 Application.Exit();
             }
             catch
