@@ -59,16 +59,17 @@ namespace _5pwnet_switcher
             }
 
             //Announcement
+            int length = 20;
             if (x.Announcement != "")
             {
                 InsertLog("来自服务器的消息：");
                 string tmp = x.Announcement!;
-                while (tmp.Length > 10)
+                while (tmp.Length > length)
                 {
-                    InsertLog(tmp[..10]);
-                    tmp = tmp[10..];
+                    InsertLog(tmp[..length], false);
+                    tmp = tmp[length..];
                 }
-                InsertLog(tmp);
+                InsertLog(tmp, false);
             }
 
             if (x.ServerUrl != "")
@@ -82,6 +83,16 @@ namespace _5pwnet_switcher
                 Application.Exit();
             }
 
+            // 从根目录启动osu!
+            if (File.Exists(".\\osu!.exe"))
+            {
+                InsertLog("正在通过根目录文件启动osu!");
+                System.Diagnostics.Process.Start(".\\osu!.exe", $"-devserver {x.ServerUrl}:{x.Port}");
+                await Delay_Async(5000);
+                Application.Exit();
+            }
+
+            // 从全局注册表启动osu!
             try
             {
                 string? rkv = null;
@@ -94,7 +105,7 @@ namespace _5pwnet_switcher
                     MessageBox.Show("没有在系统内配置的osu!默认路径下找到osu!的可执行文件，请重新安装osu!或以管理员身份重新运行一次osu!后再使用此启动器！", "未找到osu!路径", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     Application.Exit();
                 }
-                InsertLog("正在启动osu!");
+                InsertLog("正在通过默认程序启动osu!");
                 System.Diagnostics.Process.Start(rkv, $"-devserver {x.ServerUrl}:{x.Port}");
                 await Delay_Async(5000);
                 Application.Exit();

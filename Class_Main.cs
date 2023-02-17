@@ -13,7 +13,7 @@ namespace _5pwnet_switcher
     public partial class Class_Main
     {
         public readonly static int CurrentMajorVersion = 1;
-        public readonly static int CurrentVersion = 2;
+        public readonly static int CurrentVersion = 3;
         private readonly static string BaseUrl = "https://desu.life/5pw.net";
 
         static IFlurlRequest http()

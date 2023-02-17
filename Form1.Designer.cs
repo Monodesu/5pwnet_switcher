@@ -37,9 +37,9 @@
             this.listBox1.Enabled = false;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 17;
-            this.listBox1.Location = new System.Drawing.Point(0, 0);
+            this.listBox1.Location = new System.Drawing.Point(-1, -1);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(390, 106);
+            this.listBox1.Size = new System.Drawing.Size(389, 174);
             this.listBox1.TabIndex = 0;
             this.listBox1.TabStop = false;
             // 
@@ -47,7 +47,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(221, 106);
+            this.ClientSize = new System.Drawing.Size(221, 157);
             this.Controls.Add(this.listBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
