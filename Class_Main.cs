@@ -13,7 +13,7 @@ namespace _5pwnet_switcher
     public partial class Class_Main
     {
         public readonly static int CurrentMajorVersion = 1;
-        public readonly static int CurrentVersion = 3;
+        public readonly static int CurrentVersion = 5;
         private readonly static string BaseUrl = "https://desu.life/5pw.net";
 
         static IFlurlRequest http()
@@ -21,11 +21,15 @@ namespace _5pwnet_switcher
             return BaseUrl.AllowHttpStatus(HttpStatusCode.NotFound).AllowHttpStatus(HttpStatusCode.BadGateway);
         }
 
-
+        public class ServerInfoArray
+        {
+            public string? Note { get; set; }
+            public string? Url { get; set; }
+            public int Port { get; set; }
+        }
         public class ServerInfo
         {
-            public string? ServerUrl { get; set; }
-            public int Port { get; set; }
+            public ServerInfoArray[]? ServerInfos { get; set; }
             public string? Announcement { get; set; }
             public int SwitcherOnliveVersion { get; set; }
             public string? SwitcherDownloadUrl { get; set; }
@@ -53,24 +57,5 @@ namespace _5pwnet_switcher
                 return null!;
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
